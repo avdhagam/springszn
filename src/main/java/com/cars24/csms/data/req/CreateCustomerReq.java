@@ -1,6 +1,6 @@
-package com.cars24.csms3.data.req;
+package com.cars24.csms.data.req;
 
-import com.cars24.csms3.service.impl.CustomerServiceImpl;
+import com.cars24.csms.service.impl.CustomerServiceImpl;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

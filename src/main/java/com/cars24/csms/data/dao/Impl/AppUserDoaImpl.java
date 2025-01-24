@@ -1,10 +1,11 @@
-package com.cars24.csms3.data.dao.Impl;
+package com.cars24.csms.data.dao.Impl;
 
-import com.cars24.csms3.data.entity.AppUserEntity;
-import com.cars24.csms3.data.repositories.AppUserRepository;
-import com.cars24.csms3.data.dao.AppUserDao;
-import com.cars24.csms3.data.req.LoginRequest;
-import com.cars24.csms3.data.req.SignupRequest;
+import com.cars24.csms.data.dao.AppUserDao;
+import com.cars24.csms.data.entities.AppUserEntity;
+import com.cars24.csms.data.repositories.AppUserRepository;
+
+import com.cars24.csms.data.req.LoginRequest;
+import com.cars24.csms.data.req.SignupRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

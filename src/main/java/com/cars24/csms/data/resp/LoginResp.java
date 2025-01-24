@@ -1,4 +1,4 @@
-package com.cars24.csms3.data.resp;
+package com.cars24.csms.data.resp;
 
 import lombok.Data;
 

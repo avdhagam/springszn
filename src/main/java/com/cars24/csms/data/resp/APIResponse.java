@@ -1,10 +1,10 @@
-package com.cars24.csms3.data.resp;
+package com.cars24.csms.data.resp;
 
 import lombok.Data;
 import lombok.Setter;
 
 @Data
-public class APIResp {
+public class APIResponse {
     private boolean success;
     // Ensure you have the setter method for statuscode, and it's named correctly.
     @Setter

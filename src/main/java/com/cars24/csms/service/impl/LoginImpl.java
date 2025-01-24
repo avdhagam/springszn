@@ -1,9 +1,9 @@
-package com.cars24.csms3.service.impl;
+package com.cars24.csms.service.impl;
 
-import com.cars24.csms3.data.dao.AppUserDao;
-import com.cars24.csms3.data.entity.AppUserEntity;
-import com.cars24.csms3.data.req.LoginRequest;
-import com.cars24.csms3.service.LoginService;
+import com.cars24.csms.data.dao.AppUserDao;
+import com.cars24.csms.data.entities.AppUserEntity;
+import com.cars24.csms.data.req.LoginRequest;
+import com.cars24.csms.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

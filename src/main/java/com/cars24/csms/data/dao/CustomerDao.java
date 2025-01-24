@@ -1,7 +1,7 @@
-package com.cars24.csms3.data.dao;
+package com.cars24.csms.data.dao;
 
-import com.cars24.csms3.data.req.CreateCustomerReq;
-import com.cars24.csms3.data.resp.CreateCustomerResponce;
+import com.cars24.csms.data.req.CreateCustomerReq;
+import com.cars24.csms.data.resp.CreateCustomerResponce;
 import org.springframework.stereotype.Service;
 
 @Service

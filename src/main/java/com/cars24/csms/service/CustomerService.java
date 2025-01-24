@@ -1,7 +1,7 @@
-package com.cars24.csms3.service;
+package com.cars24.csms.service;
 
-import com.cars24.csms3.data.req.CreateCustomerReq;
-import com.cars24.csms3.data.resp.CreateCustomerResponce;
+import com.cars24.csms.data.req.CreateCustomerReq;
+import com.cars24.csms.data.resp.CreateCustomerResponce;
 
 public interface CustomerService {
     CreateCustomerResponce createCustomer(CreateCustomerReq createCustomerReq);

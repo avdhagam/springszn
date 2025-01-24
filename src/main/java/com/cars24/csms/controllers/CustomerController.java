@@ -1,11 +1,11 @@
-package com.cars24.csms3.Controller;
+package com.cars24.csms.controllers;
 
-import com.cars24.csms3.data.dao.CustomerDao;
-import com.cars24.csms3.data.entity.CustomerEntity;
-import com.cars24.csms3.data.repositories.CustomerRepository;
-import com.cars24.csms3.data.req.CreateCustomerReq;
-import com.cars24.csms3.data.resp.CreateCustomerResponce;
-import com.cars24.csms3.service.impl.CustomerServiceImpl;
+import com.cars24.csms.data.dao.CustomerDao;
+import com.cars24.csms.data.entities.CustomerEntity;
+import com.cars24.csms.data.repositories.CustomerRepository;
+import com.cars24.csms.data.req.CreateCustomerReq;
+import com.cars24.csms.data.resp.CreateCustomerResponce;
+import com.cars24.csms.service.impl.CustomerServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

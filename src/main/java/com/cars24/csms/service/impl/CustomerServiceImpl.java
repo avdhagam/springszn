@@ -1,14 +1,14 @@
-package com.cars24.csms3.service.impl;
+package com.cars24.csms.service.impl;
 
-import com.cars24.csms3.data.dao.CustomerDao;
-import com.cars24.csms3.data.entity.CustomerEntity;
-import com.cars24.csms3.data.repositories.AppUserRepository;
-import com.cars24.csms3.data.repositories.CustomerRepository;
-import com.cars24.csms3.data.req.CreateCustomerReq;
-import com.cars24.csms3.data.resp.CreateCustomerResponce;
-import com.cars24.csms3.exceptions.CheckByUsername;
-import com.cars24.csms3.exceptions.UserExistsException;
-import com.cars24.csms3.service.CustomerService;
+import com.cars24.csms.data.dao.CustomerDao;
+import com.cars24.csms.data.entities.CustomerEntity;
+import com.cars24.csms.data.repositories.AppUserRepository;
+import com.cars24.csms.data.repositories.CustomerRepository;
+import com.cars24.csms.data.req.CreateCustomerReq;
+import com.cars24.csms.data.resp.CreateCustomerResponce;
+import com.cars24.csms.exceptions.CheckByUsername;
+import com.cars24.csms.exceptions.UserExistsException;
+import com.cars24.csms.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

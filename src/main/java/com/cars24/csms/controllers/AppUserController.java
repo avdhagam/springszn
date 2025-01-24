@@ -1,11 +1,10 @@
-package com.cars24.csms3.Controller;
+package com.cars24.csms.controllers;
 
-import com.cars24.csms3.data.req.LoginRequest;
-import com.cars24.csms3.data.req.SignupRequest;
-import com.cars24.csms3.data.resp.APIResp;
-import com.cars24.csms3.data.resp.LoginResp;
-import com.cars24.csms3.service.AppUserService;
-import com.cars24.csms3.service.impl.AppUserServiceImpl;
+import com.cars24.csms.data.req.LoginRequest;
+import com.cars24.csms.data.req.SignupRequest;
+import com.cars24.csms.data.resp.APIResponse;
+import com.cars24.csms.data.resp.LoginResp;
+import com.cars24.csms.service.impl.AppUserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +33,7 @@ public class AppUserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<APIResp> createUser(@Valid @RequestBody SignupRequest signupRequest){
+    public ResponseEntity<APIResponse> createUser(@Valid @RequestBody SignupRequest signupRequest){
         log.info(signupRequest.getUsername());
         log.info(signupRequest.getPassword());
 

@@ -1,19 +1,18 @@
-package com.cars24.csms3.service.impl;
+package com.cars24.csms.service.impl;
 
-import com.cars24.csms3.data.dao.AppUserDao;
-import com.cars24.csms3.data.dao.Impl.AppUserDoaImpl;
-import com.cars24.csms3.data.entity.AppUserEntity;
-import com.cars24.csms3.data.req.LoginRequest;
-import com.cars24.csms3.data.req.SignupRequest;
-import com.cars24.csms3.data.resp.APIResp;
-import com.cars24.csms3.data.resp.LoginResp;
-import com.cars24.csms3.exceptions.UserServiceException;
-import com.cars24.csms3.service.AppUserService;
+import com.cars24.csms.data.dao.Impl.AppUserDoaImpl;
+import com.cars24.csms.data.entities.AppUserEntity;
+import com.cars24.csms.data.req.LoginRequest;
+import com.cars24.csms.data.req.SignupRequest;
+import com.cars24.csms.data.resp.APIResponse;
+import com.cars24.csms.data.resp.LoginResp;
+import com.cars24.csms.exceptions.UserServiceException;
+import com.cars24.csms.service.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.cars24.csms3.data.repositories.AppUserRepository;
+import com.cars24.csms.data.repositories.AppUserRepository;
 
 @RequiredArgsConstructor
 @Service
@@ -34,8 +33,8 @@ public class AppUserServiceImpl implements AppUserService {
         return loginResp;
     }
 
-    @Override
-    public ResponseEntity<APIResp> createUser(SignupRequest signupRequest) {
+//    @Override
+    public ResponseEntity<APIResponse> createUser(SignupRequest signupRequest) {
 
         if (appUserRepository.existsByUsername(signupRequest.getUsername())) {
             // Throw the custom exception instead of manually setting the response
@@ -46,7 +45,7 @@ public class AppUserServiceImpl implements AppUserService {
         appUserDoaImpl.createUser(signupRequest);
 
         // Prepare the success response
-        APIResp resp = new APIResp();
+       APIResponse resp = new APIResponse();
         resp.setStatuscode(HttpStatus.OK.value());
         resp.setSuccess(true);
         resp.setMessage("User signed up successfully");

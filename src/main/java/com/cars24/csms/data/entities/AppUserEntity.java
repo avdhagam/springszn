@@ -1,4 +1,4 @@
-package com.cars24.csms3.data.entity;
+package com.cars24.csms.data.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

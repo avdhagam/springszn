@@ -1,4 +1,4 @@
-package com.cars24.csms3.exceptions;
+package com.cars24.csms.exceptions;
 
 public class CheckByUsername extends RuntimeException {
     public CheckByUsername(String message) {

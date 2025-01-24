@@ -1,10 +1,10 @@
-package com.cars24.csms3.data.dao.Impl;
+package com.cars24.csms.data.dao.Impl;
 
-import com.cars24.csms3.data.dao.CustomerDao;
-import com.cars24.csms3.data.entity.CustomerEntity;
-import com.cars24.csms3.data.repositories.CustomerRepository;
-import com.cars24.csms3.data.req.CreateCustomerReq;
-import com.cars24.csms3.data.resp.CreateCustomerResponce;
+import com.cars24.csms.data.dao.CustomerDao;
+import com.cars24.csms.data.entities.CustomerEntity;
+import com.cars24.csms.data.repositories.CustomerRepository;
+import com.cars24.csms.data.req.CreateCustomerReq;
+import com.cars24.csms.data.resp.CreateCustomerResponce;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

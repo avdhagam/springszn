@@ -1,87 +1,127 @@
-package com.cars24.csms3.advice;
+package com.cars24.csms.advice;
+import com.cars24.csms.exceptions.CheckByUsername;
+import com.cars24.csms.data.resp.APIResponse;
 
-import com.cars24.csms3.data.resp.APIResp;
-import com.cars24.csms3.exceptions.CheckByUsername;
-import com.cars24.csms3.exceptions.UserExistsException;
-import com.cars24.csms3.exceptions.UserServiceException;
+import com.cars24.csms.exceptions.ServiceAlreadyExistsException;
+import com.cars24.csms.exceptions.UserServiceException;
+import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+
+
 
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 
+
+
+    //    @ExceptionHandler(ValidationException.class)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<APIResp> handleValidationExceptions(MethodArgumentNotValidException exception) {
+    public ResponseEntity<APIResponse> handleValidationExceptions(MethodArgumentNotValidException exception)
+    {
         log.info("[handleValidationExceptions]");
 
-        Map<String, String> errorMap = new HashMap<>();
-        exception.getBindingResult().getFieldErrors().forEach(error -> {
-            errorMap.put(error.getField(), error.getDefaultMessage());
+        Map<String,String> errorMap=new HashMap<>();
+        exception.getBindingResult().getFieldErrors().forEach(error->
+        {
+            errorMap.put(error.getField(),error.getDefaultMessage());
         });
 
-        APIResp resp = new APIResp();
+        APIResponse apiResponse = new APIResponse();
+        apiResponse.setStatuscode(HttpStatus.OK.value());
+        apiResponse.setSuccess(false);
+        apiResponse.setMessage("invalid data");
+        apiResponse.setService("APPUSR-"+HttpStatus.OK.value());
+        apiResponse.setData(errorMap);
+        return ResponseEntity.badRequest().body(apiResponse);
+      //  return errorMap;
+    }
+
+    @ExceptionHandler(UserServiceException.class)
+    public ResponseEntity<APIResponse> handleUserServiceExceptions(UserServiceException exception)
+    {
+        APIResponse apiResponse = new APIResponse();
+        apiResponse.setStatuscode(HttpStatus.BAD_REQUEST.value());
+        apiResponse.setSuccess(false);
+        apiResponse.setMessage(exception.getMessage());
+        apiResponse.setService("APPUSR-"+HttpStatus.OK.value());
+        apiResponse.setData(null);
+        return ResponseEntity.badRequest().body(apiResponse);
+//        return errorMap;
+    }
+
+    @ExceptionHandler(com.cars24.csms.exceptions.ServiceAlreadyExistsException.class)
+    public ResponseEntity<APIResponse> handleServiceAlreadyExistsException(com.cars24.csms.exceptions.ServiceAlreadyExistsException ex) {
+        APIResponse apiResponse = new APIResponse();
+        apiResponse.setStatuscode(HttpStatus.CONFLICT.value()); // HTTP 409 Conflict
+        apiResponse.setSuccess(false);
+        apiResponse.setMessage(ex.getMessage());
+        apiResponse.setData(null); // No additional data for this error
+        apiResponse.setService("SERVICE-CREATION");
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(apiResponse);
+    }
+
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<APIResponse> handleNullPointerException(NullPointerException exception) {
+        log.error("[handleNullPointerException] - Unexpected null value encountered: {}", exception.getMessage());
+
+        APIResponse apiResponse = new APIResponse();
+        apiResponse.setStatuscode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        apiResponse.setSuccess(false);
+        apiResponse.setMessage("Unexpected server error occurred. Please try again later.");
+        apiResponse.setService("APPUSR-" + HttpStatus.INTERNAL_SERVER_ERROR.value());
+        apiResponse.setData(null);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<APIResponse> handleGenericException(Exception exception) {
+        log.error("[handleGenericException] - Unexpected error: {}", exception.getMessage());
+
+        APIResponse apiResponse = new APIResponse();
+        apiResponse.setStatuscode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        apiResponse.setSuccess(false);
+        apiResponse.setMessage("An unexpected error occurred. Please contact support.");
+        apiResponse.setService("APPUSR-" + HttpStatus.INTERNAL_SERVER_ERROR.value());
+        apiResponse.setData(null);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
+    }
+    @ExceptionHandler(CheckByUsername.class)
+    public ResponseEntity<APIResponse> handleCheckByUserName(CheckByUsername exception) {
+        log.error("[CheckByUserName]", exception);
+        APIResponse resp = new APIResponse();
         resp.setStatuscode(HttpStatus.BAD_REQUEST.value());
         resp.setSuccess(false);
-        resp.setMessage("Validation failed");
+        resp.setMessage(exception.getMessage());
         resp.setService("APPUSR - " + HttpStatus.BAD_REQUEST.value());
-        resp.setData(errorMap);
+        resp.setData(null);
 
         return ResponseEntity.badRequest().body(resp);
     }
 
     @ExceptionHandler(UserServiceException.class)
-    public ResponseEntity<APIResp> handleUserServiceException(UserServiceException exception) {
-        log.info("[handleUserServiceException] - {}", exception.getMessage());
-
-        APIResp resp = new APIResp();
-        resp.setStatuscode(HttpStatus.BAD_REQUEST.value());
-        resp.setSuccess(false);
-        resp.setMessage(exception.getMessage());
-        resp.setService("APPUSR - " + HttpStatus.BAD_REQUEST.value());
-        resp.setData(null);
-
-        return ResponseEntity.badRequest().body(resp);
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<APIResp> handleGenericException(Exception exception) {
-        log.error("[handleGenericException]", exception);
-
-        APIResp resp = new APIResp();
-        resp.setStatuscode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        resp.setSuccess(false);
-        resp.setMessage("An unexpected error occurred");
-        resp.setService("APPUSR - " + HttpStatus.INTERNAL_SERVER_ERROR.value());
-        resp.setData(null);
-
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resp);
-    }
-
-    @ExceptionHandler(CheckByUsername.class)
-    public ResponseEntity<APIResp> handleCheckByUserName(CheckByUsername exception) {
+    public ResponseEntity<APIResponse> handleUserExistsException(UserServiceException exception) {
         log.error("[CheckByUserName]", exception);
-        APIResp resp = new APIResp();
-        resp.setStatuscode(HttpStatus.BAD_REQUEST.value());
-        resp.setSuccess(false);
-        resp.setMessage(exception.getMessage());
-        resp.setService("APPUSR - " + HttpStatus.BAD_REQUEST.value());
-        resp.setData(null);
-
-        return ResponseEntity.badRequest().body(resp);
-    }
-
-    @ExceptionHandler(UserExistsException.class)
-    public ResponseEntity<APIResp> handleUserExistsException(UserExistsException exception) {
-        log.error("[CheckByUserName]", exception);
-        APIResp resp = new APIResp();
+        APIResponse resp = new APIResponse();
         resp.setStatuscode(HttpStatus.BAD_REQUEST.value());
         resp.setSuccess(false);
         resp.setMessage(exception.getMessage());
@@ -89,4 +129,6 @@ public class GlobalExceptionHandler {
         resp.setData(null);
         return ResponseEntity.badRequest().body(resp);
     }
+
+
 }

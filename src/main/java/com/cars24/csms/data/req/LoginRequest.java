@@ -1,4 +1,4 @@
-package com.cars24.csms3.data.req;
+package com.cars24.csms.data.req;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

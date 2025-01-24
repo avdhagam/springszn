@@ -5,7 +5,7 @@ import com.cars24.csms.data.entities.AppUserEntity;
 import com.cars24.csms.data.repositories.AppUserRepository;
 import com.cars24.csms.data.req.LoginRequest;
 import com.cars24.csms.data.req.SignupRequest;
-import com.cars24.csms.data.resp.APIResp;
+import com.cars24.csms.data.resp.APIResponse;
 import com.cars24.csms.data.resp.LoginResp;
 import com.cars24.csms.service.AppUserService;
 import lombok.RequiredArgsConstructor;
@@ -34,10 +34,10 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
-    public ResponseEntity<APIResp> createUser(SignupRequest signupRequest) {
+    public ResponseEntity<APIResponse> createUser(SignupRequest signupRequest) {
 
         boolean exists = false;
-        APIResp resp = new APIResp();
+        APIResponse resp = new APIResponse();
 
         exists = appUserRepository.existsByUsername(signupRequest.getUsername());
 

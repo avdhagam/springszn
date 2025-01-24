@@ -5,10 +5,13 @@ import lombok.Data;
 
 @Data
 
-public class APIResp {
-    private int StatusCode;
+public class APIResponse {
+    private Integer StatusCode;
     private boolean success;
     private String message;
     private Object data;
     private String service;
+
+    public void setStatuscode(int StatusCode) {
+    }
 }

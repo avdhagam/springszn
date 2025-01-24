@@ -3,7 +3,7 @@ package com.cars24.csms.controllers;
 
 import com.cars24.csms.data.req.LoginRequest;
 import com.cars24.csms.data.req.SignupRequest;
-import com.cars24.csms.data.resp.APIResp;
+import com.cars24.csms.data.resp.APIResponse;
 import com.cars24.csms.data.resp.LoginResp;
 import com.cars24.csms.service.impl.AppUserServiceImpl;
 import jakarta.validation.Valid;
@@ -35,7 +35,7 @@ public class AppUserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<APIResp> createUser(@Valid @RequestBody SignupRequest signupRequest){
+    public ResponseEntity<APIResponse> createUser(@Valid @RequestBody SignupRequest signupRequest){
         log.info(signupRequest.getUsername());
         log.info(signupRequest.getPassword());
         return appUserServiceImpl.createUser(signupRequest);

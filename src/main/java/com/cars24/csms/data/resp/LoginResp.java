@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class LoginResp {
 
-    private int user_id;
+    private Integer user_id;
     private String username;
     private Boolean is_active;
 

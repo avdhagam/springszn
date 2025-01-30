@@ -1,6 +1,6 @@
 package com.cars24.csms.service;
 
-import com.cars24.csms.data.entity.AppUserDetails;
+import com.cars24.csms.data.entities.AppUserDetails;
 import com.cars24.csms.data.req.LoginReq;
 import com.cars24.csms.data.req.SignUpReq;
 import com.cars24.csms.data.resp.APIResponse;

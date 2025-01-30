@@ -1,4 +1,4 @@
-package com.cars24.csms.Controller;
+package com.cars24.csms.controllers;
 
 import com.cars24.csms.data.req.CreateServiceReq;
 import com.cars24.csms.data.req.DeleteServiceReq;

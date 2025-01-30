@@ -2,7 +2,7 @@ package com.cars24.csms.data.dao.Impl;
 
 import com.cars24.csms.data.dao.ServicesDao;
 
-import com.cars24.csms.data.entity.ServicesEntity;
+import com.cars24.csms.data.entities.ServicesEntity;
 import com.cars24.csms.data.repositories.ServicesRepository;
 import com.cars24.csms.data.req.BaseServiceReq;
 import com.cars24.csms.data.req.CreateServiceReq;

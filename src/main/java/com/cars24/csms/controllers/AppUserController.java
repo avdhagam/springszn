@@ -1,7 +1,7 @@
-package com.cars24.csms.Controller;
+package com.cars24.csms.controllers;
 
 import com.cars24.csms.data.dao.Impl.AppUserDaoImpl;
-import com.cars24.csms.data.entity.AppUserDetails;
+import com.cars24.csms.data.entities.AppUserDetails;
 import com.cars24.csms.data.req.LoginReq;
 import com.cars24.csms.data.req.SignUpReq;
 import com.cars24.csms.data.resp.APIResponse;
@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import com.cars24.csms.data.entities.AppUserDetails;
 
 import jakarta.validation.Valid;
 
@@ -44,6 +45,6 @@ public class AppUserController {
         log.info("[signUp]  signUpRequest {}",signUpReq);
         return appUserService.createUser(signUpReq);
     }
-
+    //change added
 
 }

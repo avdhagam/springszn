@@ -1,4 +1,4 @@
-package com.cars24.csms.data.entity;
+package com.cars24.csms.data.entities;
 
 import com.cars24.csms.data.enums.ServiceType;
 import jakarta.persistence.Column;

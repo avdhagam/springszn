@@ -1,6 +1,6 @@
 package com.cars24.csms.data.repositories;
 
-import com.cars24.csms.data.entity.ServicesEntity;
+import com.cars24.csms.data.entities.ServicesEntity;
 import com.cars24.csms.data.req.GetServiceReq;
 import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
 import org.springframework.data.jpa.repository.JpaRepository;

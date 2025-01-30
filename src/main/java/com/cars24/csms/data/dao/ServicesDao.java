@@ -1,6 +1,6 @@
 package com.cars24.csms.data.dao;
 
-import com.cars24.csms.data.entity.ServicesEntity;
+import com.cars24.csms.data.entities.ServicesEntity;
 import com.cars24.csms.data.req.BaseServiceReq;
 import com.cars24.csms.data.req.CreateServiceReq;
 import com.cars24.csms.data.req.GetServiceReq;

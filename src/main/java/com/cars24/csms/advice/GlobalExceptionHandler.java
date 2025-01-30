@@ -70,57 +70,5 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(apiResponse);
     }
 
-    @ExceptionHandler(NullPointerException.class)
-    public ResponseEntity<ApiResponse> handleNullPointerException(NullPointerException exception) {
-        log.error("[handleNullPointerException] - Unexpected null value encountered: {}", exception.getMessage());
-
-        ApiResponse apiResponse = new ApiResponse();
-        apiResponse.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        apiResponse.setSuccess(false);
-        apiResponse.setMessage("Unexpected server error occurred. Please try again later.");
-        apiResponse.setService("APPUSR-" + HttpStatus.INTERNAL_SERVER_ERROR.value());
-        apiResponse.setData(null);
-
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiResponse> handleGenericException(Exception exception) {
-        log.error("[handleGenericException] - Unexpected error: {}", exception.getMessage());
-
-        ApiResponse apiResponse = new ApiResponse();
-        apiResponse.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        apiResponse.setSuccess(false);
-        apiResponse.setMessage("An unexpected error occurred. Please contact support.");
-        apiResponse.setService("APPUSR-" + HttpStatus.INTERNAL_SERVER_ERROR.value());
-        apiResponse.setData(null);
-
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
-    }
-    @ExceptionHandler(CheckByUsername.class)
-    public ResponseEntity<APIResp> handleCheckByUserName(CheckByUsername exception) {
-        log.error("[CheckByUserName]", exception);
-        APIResp resp = new APIResp();
-        resp.setStatuscode(HttpStatus.BAD_REQUEST.value());
-        resp.setSuccess(false);
-        resp.setMessage(exception.getMessage());
-        resp.setService("APPUSR - " + HttpStatus.BAD_REQUEST.value());
-        resp.setData(null);
-
-        return ResponseEntity.badRequest().body(resp);
-    }
-
-    @ExceptionHandler(UserExistsException.class)
-    public ResponseEntity<APIResp> handleUserExistsException(UserExistsException exception) {
-        log.error("[CheckByUserName]", exception);
-        APIResp resp = new APIResp();
-        resp.setStatuscode(HttpStatus.BAD_REQUEST.value());
-        resp.setSuccess(false);
-        resp.setMessage(exception.getMessage());
-        resp.setService("APPUSR - " + HttpStatus.BAD_REQUEST.value());
-        resp.setData(null);
-        return ResponseEntity.badRequest().body(resp);
-    }
-
 
 }

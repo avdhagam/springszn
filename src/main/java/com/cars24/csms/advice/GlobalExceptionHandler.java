@@ -3,6 +3,7 @@ package com.cars24.csms.advice;
 import com.cars24.csms.exceptions.CheckByUsername;
 import com.cars24.csms.data.resp.APIResponse;
 import com.cars24.csms.exceptions.ServiceAlreadyExistsException;
+import com.cars24.csms.exceptions.ServiceNotFoundException;
 import com.cars24.csms.exceptions.UserServiceException;
 import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
@@ -27,10 +28,10 @@ public class GlobalExceptionHandler {
                 errorMap.put(error.getField(), error.getDefaultMessage()));
 
         APIResponse apiResponse = new APIResponse();
-        apiResponse.setStatuscode(HttpStatus.OK.value());
+        apiResponse.setStatuscode(HttpStatus.BAD_REQUEST.value());
         apiResponse.setSuccess(false);
         apiResponse.setMessage("Invalid data");
-        apiResponse.setService("APPUSR-" + HttpStatus.OK.value());
+        apiResponse.setService("APPUSR-" + HttpStatus.BAD_REQUEST.value());
         apiResponse.setData(errorMap);
         return ResponseEntity.badRequest().body(apiResponse);
     }
@@ -56,6 +57,30 @@ public class GlobalExceptionHandler {
         apiResponse.setData(null);
         apiResponse.setService("SERVICE-CREATION");
         return ResponseEntity.status(HttpStatus.CONFLICT).body(apiResponse);
+    }
+
+    @ExceptionHandler(ServiceNotFoundException.class)
+    public ResponseEntity<APIResponse> handleServiceNotFoundException(ServiceNotFoundException exception) {
+        log.error("[ServiceNotFoundException]", exception);
+        APIResponse apiResponse = new APIResponse();
+        apiResponse.setStatuscode(HttpStatus.NOT_FOUND.value());
+        apiResponse.setSuccess(false);
+        apiResponse.setMessage(exception.getMessage());
+        apiResponse.setService("SERVICE-NOT-FOUND");
+        apiResponse.setData(null);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiResponse);
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<APIResponse> handleValidationException(ValidationException exception) {
+        log.error("[ValidationException]", exception);
+        APIResponse apiResponse = new APIResponse();
+        apiResponse.setStatuscode(HttpStatus.BAD_REQUEST.value());
+        apiResponse.setSuccess(false);
+        apiResponse.setMessage("Validation error: " + exception.getMessage());
+        apiResponse.setService("SERVICE-VALIDATION");
+        apiResponse.setData(null);
+        return ResponseEntity.badRequest().body(apiResponse);
     }
 
     @ExceptionHandler(NullPointerException.class)

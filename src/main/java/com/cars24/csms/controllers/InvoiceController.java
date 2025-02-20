@@ -20,11 +20,13 @@ import java.util.List;
 @Slf4j
 public class InvoiceController {
     private final InvoiceService invoiceService;
+    //
 
     @PostMapping
     public ResponseEntity<APIResponse> createInvoice(@Valid @RequestBody CreateInvoiceRequest createInvoiceRequest) {
         log.info("[createInvoice] createInvoiceRequest {}", createInvoiceRequest);
         // now we send it to the service
+
         return invoiceService.createInvoice(createInvoiceRequest);
     }
 

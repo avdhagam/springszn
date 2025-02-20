@@ -50,7 +50,7 @@ public class AppointmentsDaoImpl implements AppointmentsDao {
             return -1;  // Return error code if not found
         }
 
-        ServiceEntity service = serviceRepository.findById(createAppointmentsRequest.getServiceId()).orElse(null);
+        ServiceEntity service = serviceRepository.findById((long) createAppointmentsRequest.getServiceId()).orElse(null);
         if (service == null) {
             log.error("[createAppointments] Service with ID {} not found", createAppointmentsRequest.getServiceId());
             return -1;  // Return error code if not found
@@ -104,7 +104,7 @@ public class AppointmentsDaoImpl implements AppointmentsDao {
         // Fetch appointments for the given customerId
         List<AppointmentsEntity> appointmentsEntities = appointmentsRepository.findAll()
                 .stream()
-                .filter(appointment -> appointment.getCustomerId().getCustomerId().equals(customerId))
+                .filter(appointment -> appointment.getCustomerId().getCus().equals(customerId))
                 .toList();
 
         if (appointmentsEntities.isEmpty()) {

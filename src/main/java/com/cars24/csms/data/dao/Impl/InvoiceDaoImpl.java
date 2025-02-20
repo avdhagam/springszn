@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -46,8 +47,8 @@ public class InvoiceDaoImpl implements InvoiceDao {
         log.info("Fetching all invoices");
         List<InvoiceEntity> invoiceEntities = invoiceRepository.findAll();
         return invoiceEntities.stream()
-                .map(this::mapEntityToResponse)
-                .toList();
+                .map(this::mapEntityToResponse) // Ensure this method is correctly implemented
+                .collect(Collectors.toList()); // Use Collectors.toList() for compatibility
     }
 
     private CreateInvoiceResponse mapEntityToResponse(InvoiceEntity invoiceEntity){

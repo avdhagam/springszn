@@ -38,7 +38,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public ResponseEntity<APIResponse> getInvoiceByID(int id) {
-        CreateInvoiceResponse invoice = invoiceDao.;
+        CreateInvoiceResponse invoice = invoiceDao.getInvoiceByID(id);
         APIResponse response = new APIResponse();
 
         if (invoice != null) {

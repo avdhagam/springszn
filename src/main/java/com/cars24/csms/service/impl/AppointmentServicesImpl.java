@@ -51,7 +51,7 @@ public class AppointmentServicesImpl implements AppointmentServices {
             return null;
         }
 
-        ServiceEntity service = serviceRepository.findById(createAppointmentsRequest.getServiceId()).orElse(null);
+        ServiceEntity service = serviceRepository.findById((long) createAppointmentsRequest.getServiceId()).orElse(null);
         if (service == null) {
             log.error("[createAppointment] Service with ID {} not found", createAppointmentsRequest.getServiceId());
             // Handle the error

@@ -1,18 +1,20 @@
 package com.cars24.csms.data.resp;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Data
+@NoArgsConstructor  // Default constructor
+@AllArgsConstructor // Constructor with all arguments
 public class APIResponse {
     private boolean success;
-    // Ensure you have the setter method for statuscode, and it's named correctly.
+
     @Setter
     private int statuscode;
+
     private String message;
     private String service;
-    private Object data; // To hold error map or any other data if necessary
-
-    public void setStatus(int value) {
-    }
+    private Object data; // Holds response data or error messages
 }

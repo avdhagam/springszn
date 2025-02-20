@@ -6,6 +6,7 @@ import com.cars24.csms.data.repositories.AppUserRepository;
 
 import com.cars24.csms.data.req.LoginRequest;
 import com.cars24.csms.data.req.SignupRequest;
+import com.cars24.csms.exceptions.UserServiceException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,27 @@ public class AppUserDoaImpl implements AppUserDao {
         appUserRepository.save(appUserEntity);
 
     }
+
+    @Override
+    public int getUserId(String email) {
+        return 0;
+    }
+
+//    @Override
+//    public int getUserId(String email) {
+//        AppUserEntity user = appUserRepository.findByUsername(email);
+//        if (user != null) {
+//            return user.getId(); // ✅ Ensure `AppUserEntity` has `getId()`
+//        } else {
+//            throw new UserServiceException("User with email " + email + " not found!");
+//        }
+//    }
+
+    @Override
+    public boolean checkIfUserExists(String email) {
+        return appUserRepository.existsByUsername(email);
+    }
+
+
 
 }

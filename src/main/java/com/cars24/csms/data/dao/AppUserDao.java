@@ -9,4 +9,6 @@ import org.springframework.stereotype.Service;
 public interface AppUserDao {
     public AppUserEntity getAppUserDetails(LoginRequest loginRequest);
     public void createUser(SignupRequest signupRequest);
+    int getUserId(String email);
+    boolean checkIfUserExists(String email);
 }

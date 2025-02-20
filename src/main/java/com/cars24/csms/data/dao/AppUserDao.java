@@ -5,8 +5,13 @@ import com.cars24.csms.data.req.LoginRequest;
 import com.cars24.csms.data.req.SignupRequest;
 import org.springframework.stereotype.Service;
 
-
 public interface AppUserDao {
-    public AppUserEntity getAppUserDetails(LoginRequest loginRequest);
-    public void createUser(SignupRequest signupRequest);
+
+    AppUserEntity getAppUserDetails(LoginRequest loginRequest);
+    String createUser(SignupRequest signUpRequest);
+    boolean checkIfUserExists(String username);
+    int getUserId(String username);
 }
+
+
+

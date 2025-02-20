@@ -1,7 +1,4 @@
-// Part of diya's employee code
-// need to merge& resolve w app code
-// also has her own app user dao and dao imp
-// not added yet tho
+//
 
 package com.cars24.csms.data.entities;
 

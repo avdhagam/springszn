@@ -13,4 +13,6 @@ public class APIResponse {
     private String service;
     private Object data; // To hold error map or any other data if necessary
 
+    public void setStatus(int value) {
+    }
 }

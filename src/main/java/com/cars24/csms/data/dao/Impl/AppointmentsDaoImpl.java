@@ -104,7 +104,11 @@ public class AppointmentsDaoImpl implements AppointmentsDao {
         // Fetch appointments for the given customerId
         List<AppointmentsEntity> appointmentsEntities = appointmentsRepository.findAll()
                 .stream()
+<<<<<<< HEAD
                 .filter(appointment -> appointment.getCustomerId().getCus().equals(customerId))
+=======
+                .filter(appointment -> appointment.getCustomerId().getId() == customerId)
+>>>>>>> 59a9acaee8c4f55370e65cb3d3d0eb078c78e69e
                 .toList();
 
         if (appointmentsEntities.isEmpty()) {

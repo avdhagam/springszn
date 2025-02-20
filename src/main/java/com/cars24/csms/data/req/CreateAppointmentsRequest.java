@@ -33,7 +33,7 @@ public class CreateAppointmentsRequest {
     @Valid
     @Min(value = 1, message = "Invalid Service ID")
 //    private ServiceEntity serviceId;
-    private int serviceId;
+    private long serviceId;
 
     @Valid
     @NotBlank
